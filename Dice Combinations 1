@@ -1,0 +1,15 @@
+ll n,sum;
+    cin>>n>>sum;
+    vll arr(n);
+    read(n,arr);
+    vi dp(sum+1,0);
+    dp[0]=1;
+    rep(i,1,sum+1){
+        rep(j,0,n){
+            if(i-arr[j]>=0){
+                dp[i]+=dp[i-arr[j]];
+                dp[i]%=mod;
+            }
+        }
+    }
+    pr(dp[sum]%mod);
