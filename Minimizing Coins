@@ -1,0 +1,13 @@
+ll n,sum;
+    cin>>n>>sum;
+    vll arr(n);
+    read(n,arr);
+    vll dp(sum+1,1e18);
+    dp[0]=0;
+    rep(i,1,sum+1){
+        rep(j,0,n){
+            if(i-arr[j]>=0) dp[i]=min(dp[i],1+dp[i-arr[j]]);
+        }
+    }
+    if(dp[sum]==1e18) pr(-1);
+    else pr(dp[sum]);
