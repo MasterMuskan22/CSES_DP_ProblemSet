@@ -1,0 +1,24 @@
+ll n;
+    cin>>n;
+    vcc arr(n,vc(n,'.'));
+    rep(i,0,n){
+        vc v;
+        rep(j,0,n){
+            char ch;
+            cin>>ch;
+            v.pb(ch);
+        }
+        arr[i]=v;
+    }
+    vii dp(n+1,vi(n+1,0));
+    dp[0][1]=1;
+    if(arr[0][0]=='*' || arr[n-1][n-1]=='*') pr(0);
+    else{
+        rep(i,1,n+1){
+            rep(j,1,n+1){
+                if(arr[i-1][j-1]=='.') dp[i][j]=(dp[i-1][j]+dp[i][j-1])%mod;
+                else dp[i][j]=0;
+            }
+        }
+        pr(dp[n][n]%mod);
+    }
